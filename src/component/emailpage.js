@@ -27,7 +27,7 @@ function EmailData() {
     }
 
     const handleClear =(event) => {
-        setemail(" ")
+        setemail("")
         setvalidationmsg("")
     }
 

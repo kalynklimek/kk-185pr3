@@ -1,9 +1,8 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './style.css'
 
 function ImageData() {
-    // return only one element
     var malibu = require('./my_images/malibu.JPG')
     var sunset_aftermath = require('./my_images/sunset_aftermath.JPG')
     var ocean = require('./my_images/ocean.JPG')
@@ -16,26 +15,67 @@ function ImageData() {
     var posing = require('./my_images/posing.jpg')
 
     const [source, setsource] = useState("")
+    const [displaybutton, setdisplaybutton] = useState("none");
 
     const overlayImage=(event) => {
-        console.log("image clicked");
-        console.log("this image src: ", event.target.src);
-
         setsource(event.target.src);
 
+        // show overlay
         var overlay = document.getElementById("overlay-image");
-        console.log("overlay: ", overlay);
         overlay.style.display = "block";
     }
 
-    const closeOverlay=(event) => {
-        //hide div
+    const closeOverlay=() => {
+        // hide overlay
         var overlay = document.getElementById("overlay-image");
         overlay.style.display = "none";
 
         setsource("");
     }
 
+    // deal with back to top button
+    const scrolling=(event) => {
+        let windowHeight = window.innerHeight;
+        let quarterPage = windowHeight/4;
+        var scroll = document.documentElement.scrollTop;
+        var safariScroll = document.body.scrollTop;
+        
+        if (scroll > quarterPage || safariScroll > quarterPage) {
+            setdisplaybutton("block");
+        }
+        else {
+            setdisplaybutton("none");
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll', scrolling);
+
+        // must cleanup to prevent memory leak --> unmounted
+        return function cleanup() {
+            window.removeEventListener('scroll', scrolling);
+        }
+    })
+
+    const buttonStyle=() => {
+        console.log("displaybutton: ", displaybutton)
+        return {
+            display: displaybutton,
+            position: 'fixed',
+            bottom: '0',
+            left: '0',
+            margin: '10px'
+        }
+    }
+
+    const backToTop=() => {
+        console.log("button clicked");
+        setdisplaybutton("none");
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+    }
+
+    // return only one element
     return (
         <div>
             <div className="image-container" id="images">
@@ -52,10 +92,11 @@ function ImageData() {
             </div>
 
             <div className="overlay" id="overlay-image">
-                <div className="overlay-div" onClick={closeOverlay}>
-                    <img className="overlayImage" src={source}/>
-                </div>
+                <div className="overlay-div" onClick={closeOverlay}></div>
+                <img className="overlay-element" src={source}/>
             </div>
+
+            <button style={buttonStyle()} onClick={backToTop}>back to top</button>
         </div>
     )
 }
