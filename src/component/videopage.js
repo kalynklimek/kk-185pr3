@@ -10,7 +10,7 @@ function VideoData() {
     var twinpeaks = require('./videos/twinpeaks.MP4')
     var jonah = require('./videos/jonah.MP4')
     return (
-        <div class="video-container" id="videos">
+        <div className="video-container" id="videos">
             <video width="320" height="240" controls>
               <source src={malibu.default} type="video/mp4" />
             </video>
