@@ -13,7 +13,7 @@ function Itab (props) {
 
     console.log("props: ", props);
     return (
-        <div style = {addstyle()} onclick = {props.ctab.bind(this,props.out.id)} >{props.out.title}</div>
+        <div style = {addstyle()} onClick = {props.ctab.bind(this,props.out.id)} >{props.out.title}</div>
     )
 }
 export default Itab;

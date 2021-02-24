@@ -4,7 +4,7 @@ import React from 'react'
 function HomeData() {
     // return only one element
     return (
-        <div classname="opening-text">
+        <div className="opening-text">
           <h1>welcome to kalyn's cs 185 pr1 home page!</h1>
           <h1>please click any of the nav bar options above</h1>
           <h4>* all pictures and videos on this site are my own *</h4>

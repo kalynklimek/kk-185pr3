@@ -104,10 +104,10 @@ function App() {
   }
   return (
     <div className="App">
-      <div classname="nav-bar">
+      <div className="nav-bar">
         <Tablist tabs ={tabs} activetab ={active} ctab ={changetab}/>
       </div>
-      <div classname="main-body">
+      <div className="main-body">
         <Body activetab ={active}/>
       </div>
     </div>
