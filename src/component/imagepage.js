@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react';
 import './style.css'
 
 function ImageData() {
@@ -13,18 +14,48 @@ function ImageData() {
     var rome = require('./my_images/rome.jpg')
     var sunset = require('./my_images/sunset.jpg')
     var posing = require('./my_images/posing.jpg')
+
+    const [source, setsource] = useState("")
+
+    const overlayImage=(event) => {
+        console.log("image clicked");
+        console.log("this image src: ", event.target.src);
+
+        setsource(event.target.src);
+
+        var overlay = document.getElementById("overlay-image");
+        console.log("overlay: ", overlay);
+        overlay.style.display = "block";
+    }
+
+    const closeOverlay=(event) => {
+        //hide div
+        var overlay = document.getElementById("overlay-image");
+        overlay.style.display = "none";
+
+        setsource("");
+    }
+
     return (
-        <div className="image-container" id="images">
-            <img src={malibu.default} width="200px" />
-            <img src={sunset_aftermath.default} width="200px" />
-            <img src={ocean.default} width="200px" />
-            <img src={wonderspaces.default} width="200px" />
-            <img src={old_room.default} width="200px" />
-            <img src={spain.default} width="200px" />
-            <img src={malibu_ocean.default} width="200px" />
-            <img src={rome.default} width="200px" />
-            <img src={sunset.default} width="200px" />
-            <img src={posing.default} width="200px" />
+        <div>
+            <div className="image-container" id="images">
+                <img src={malibu.default} width="200px" onClick={overlayImage}/>
+                <img src={sunset_aftermath.default} width="200px" onClick={overlayImage}/>
+                <img src={ocean.default} width="200px" onClick={overlayImage}/>
+                <img src={wonderspaces.default} width="200px" onClick={overlayImage}/>
+                <img src={old_room.default} width="200px" onClick={overlayImage}/>
+                <img src={spain.default} width="200px" onClick={overlayImage}/>
+                <img src={malibu_ocean.default} width="200px" onClick={overlayImage}/>
+                <img src={rome.default} width="200px" onClick={overlayImage}/>
+                <img src={sunset.default} width="200px" onClick={overlayImage}/>
+                <img src={posing.default} width="200px" onClick={overlayImage}/>
+            </div>
+
+            <div className="overlay" id="overlay-image">
+                <div className="overlay-div" onClick={closeOverlay}>
+                    <img className="overlayImage" src={source}/>
+                </div>
+            </div>
         </div>
     )
 }
