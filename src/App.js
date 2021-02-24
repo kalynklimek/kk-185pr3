@@ -77,31 +77,32 @@ function App() {
   const [active, setactive] = useState(1)
   const tabs =[{
     id:1,
-    title:'Home'
+    title:'home'
   },
   {
     id:2,
-    title:'Text'
+    title:'text'
   },
   {
     id:3,
-    title:'Image'
+    title:'image'
   },
   {
     id:4,
-    title:'Video'
+    title:'video'
   },
   {
     id:5,
-    title:'Table'
+    title:'table'
   },
   {
     id:6,
-    title:'Email'
+    title:'email'
   }]
   const changetab =(id) =>{
     setactive(id)
   }
+
   return (
     <div className="App">
       <div className="nav-bar">

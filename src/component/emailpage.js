@@ -1,5 +1,5 @@
 import React from 'react'
-// import './style.css'
+import './style.css'
 
 function EmailData() {
     // return only one element
@@ -9,7 +9,7 @@ function EmailData() {
           <form className="form" id="email-form">
             <div id="form-before-submit">
                 <label>
-                    Enter your email:
+                    enter your email:
                     <input type="email" id="email" name="email" />
                 </label>
 

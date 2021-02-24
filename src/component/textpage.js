@@ -1,5 +1,5 @@
 import React from 'react'
-// import './style.css'
+import './style.css'
 
 function TextData() {
     // return only one element
@@ -10,21 +10,21 @@ function TextData() {
                 <div className="typed-section">
                     <div className="text-input">
                         <label>
-                            Name:
+                            name:
                             <input type="text" name="name"/>
                         </label>
                     </div>
 
                     <div className="text-input">
                         <label>
-                            School:
+                            school:
                             <input type="text" name="school" />
                         </label>
                     </div>
 
                     <div className="text-input">
                         <label>
-                            Major:
+                            major:
                             <input type="text" name="major" />
                         </label>
                     </div>
