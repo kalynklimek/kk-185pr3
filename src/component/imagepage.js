@@ -2,34 +2,37 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import './style.css'
 
-function ImageData() {
-    var malibu = require('./my_images/malibu.JPG')
-    var sunset_aftermath = require('./my_images/sunset_aftermath.JPG')
-    var ocean = require('./my_images/ocean.JPG')
-    var wonderspaces = require('./my_images/wonderspaces.JPG')
-    var old_room = require('./my_images/old_room.JPG')
-    var spain = require('./my_images/spain.jpg')
-    var malibu_ocean = require('./my_images/malibu_ocean.JPG')
-    var rome = require('./my_images/rome.jpg')
-    var sunset = require('./my_images/sunset.jpg')
-    var posing = require('./my_images/posing.jpg')
+// import images
+import malibu from './my_images/malibu.JPG'
+import sunset_aftermath from './my_images/sunset_aftermath.JPG'
+import ocean from './my_images/ocean.JPG'
+import wonderspaces from './my_images/wonderspaces.JPG'
+import old_room from './my_images/old_room.JPG'
+import spain from './my_images/spain.jpg'
+import malibu_ocean from './my_images/malibu_ocean.JPG'
+import rome from './my_images/rome.jpg'
+import sunset from './my_images/sunset.jpg'
+import posing from './my_images/posing.jpg'
 
+function ImageData() {
     const [source, setsource] = useState("")
     const [displaybutton, setdisplaybutton] = useState("none");
+    const [showoverlay, setshowoverlay] = useState("none");
 
     const overlayImage=(event) => {
         setsource(event.target.src);
+        setshowoverlay("block");
+    }
 
-        // show overlay
-        var overlay = document.getElementById("overlay-image");
-        overlay.style.display = "block";
+    const showOverlay=() =>{
+        return {
+            display: showoverlay
+        }
     }
 
     const closeOverlay=() => {
         // hide overlay
-        var overlay = document.getElementById("overlay-image");
-        overlay.style.display = "none";
-
+        setshowoverlay("none");
         setsource("");
     }
 
@@ -51,14 +54,13 @@ function ImageData() {
     useEffect(() => {
         window.addEventListener('scroll', scrolling);
 
-        // must cleanup to prevent memory leak --> unmounted
+        // must cleanup to prevent memory leak --> similar to componentWillUnmount
         return function cleanup() {
             window.removeEventListener('scroll', scrolling);
         }
     })
 
     const buttonStyle=() => {
-        console.log("displaybutton: ", displaybutton)
         return {
             display: displaybutton,
             position: 'fixed',
@@ -69,7 +71,6 @@ function ImageData() {
     }
 
     const backToTop=() => {
-        console.log("button clicked");
         setdisplaybutton("none");
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
@@ -79,19 +80,19 @@ function ImageData() {
     return (
         <div>
             <div className="image-container" id="images">
-                <img src={malibu.default} width="200px" onClick={overlayImage}/>
-                <img src={sunset_aftermath.default} width="200px" onClick={overlayImage}/>
-                <img src={ocean.default} width="200px" onClick={overlayImage}/>
-                <img src={wonderspaces.default} width="200px" onClick={overlayImage}/>
-                <img src={old_room.default} width="200px" onClick={overlayImage}/>
-                <img src={spain.default} width="200px" onClick={overlayImage}/>
-                <img src={malibu_ocean.default} width="200px" onClick={overlayImage}/>
-                <img src={rome.default} width="200px" onClick={overlayImage}/>
-                <img src={sunset.default} width="200px" onClick={overlayImage}/>
-                <img src={posing.default} width="200px" onClick={overlayImage}/>
+                <img src={malibu} width="200px" onClick={overlayImage}/>
+                <img src={sunset_aftermath} width="200px" onClick={overlayImage}/>
+                <img src={ocean} width="200px" onClick={overlayImage}/>
+                <img src={wonderspaces} width="200px" onClick={overlayImage}/>
+                <img src={old_room} width="200px" onClick={overlayImage}/>
+                <img src={spain} width="200px" onClick={overlayImage}/>
+                <img src={malibu_ocean} width="200px" onClick={overlayImage}/>
+                <img src={rome} width="200px" onClick={overlayImage}/>
+                <img src={sunset} width="200px" onClick={overlayImage}/>
+                <img src={posing} width="200px" onClick={overlayImage}/>
             </div>
 
-            <div className="overlay" id="overlay-image">
+            <div className="overlay" style={showOverlay()}>
                 <div className="overlay-div" onClick={closeOverlay}></div>
                 <img className="overlay-element" src={source}/>
             </div>

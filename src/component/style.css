@@ -79,6 +79,7 @@ h4 {
   
 .image-container img {
     padding: 20px;
+    cursor: pointer;
 }
 
 /* ----------- IMAGE AND VIDEO OVERLAY STYLING ------------ */
@@ -122,9 +123,8 @@ h4 {
 }
   
 .video-container video {
-    /* padding-left: 20px;
-    padding-right: 20px; */
     padding: 20px;
+    cursor: pointer;
 }
   
 .video-container video:focus {

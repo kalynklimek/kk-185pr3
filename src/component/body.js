@@ -5,7 +5,6 @@ import ImageData from './imagepage';
 import VideoData from './videopage';
 import TableData from './tablepage';
 import EmailData from './emailpage';
-// import './style.css'
 
 class Body extends Component {
 

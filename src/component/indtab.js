@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
+import { useState } from 'react';
 
 function Itab (props) {
+
+    const [background, setbackground] = useState("black");
+
+    const handleHover=() =>{
+        setbackground("#404040");
+    }
+
+    const mouseOff=() => {
+        setbackground("black");
+    }
 
     const addstyle = () => {
         if(props.out.id == props.activetab) {
@@ -16,7 +27,7 @@ function Itab (props) {
         }
         else {
             return {
-                backgroundColor:'black',
+                backgroundColor: background,
                 display: 'inline-block',
                 padding: '20px',
                 marginLeft: '20px',
@@ -26,9 +37,8 @@ function Itab (props) {
         }
     };
 
-    console.log("props: ", props);
     return (
-        <div className="tab" style = {addstyle()} onClick = {props.ctab.bind(this,props.out.id)} >{props.out.title}</div>
+        <div className="tab" onMouseOver={handleHover} onMouseOut={mouseOff} style = {addstyle()} onClick = {props.ctab.bind(this,props.out.id)} >{props.out.title}</div>
     )
 }
 export default Itab;

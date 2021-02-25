@@ -31,11 +31,11 @@ function TextData() {
                 </div>
 
                 <br /><label>school year:</label><br />
-                <input type="radio" value="first" /> first year <br />
-                <input type="radio" value="second" /> second year <br />
-                <input type="radio" value="third" /> third year <br />
-                <input type="radio" value="fourth" /> fourth year <br />
-                <input type="radio" value="other" /> > fourth year <br /> <br />
+                <input type="radio" name="syear" value="first" /> first year <br />
+                <input type="radio" name="syear" value="second" /> second year <br />
+                <input type="radio" name="syear" value="third" /> third year <br />
+                <input type="radio" name="syear" value="fourth" /> fourth year <br />
+                <input type="radio" name="syear" value="other" /> > fourth year <br /> <br />
 
                 <input type="submit" value="submit"></input>
             </form>

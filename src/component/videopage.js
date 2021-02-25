@@ -2,59 +2,48 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import './style.css'
 
+// import videos
+import malibu from './videos/malibu.MP4'
+import rome from './videos/rome.MP4'
+import waves from './videos/waves.MP4'
+import snow from './videos/snow.MP4'
+import twinpeaks from './videos/twinpeaks.MP4'
+import jonah from './videos/jonah.MP4'
+
 function VideoData() {
-
-    var malibu = require('./videos/malibu.MP4')
-    var rome = require('./videos/rome.MP4')
-    var waves = require('./videos/waves.MP4')
-    var snow = require('./videos/snow.MP4')
-    var twinpeaks = require('./videos/twinpeaks.MP4')
-    var jonah = require('./videos/jonah.MP4')
-
-    // const [videoid, setvideoid] = useState(0)
-    const [source, setsource] = useState("")
+    const [source, setsource] = useState("");
     const [displaybutton, setdisplaybutton] = useState("none");
+    const [showvideo, setshowvideo] = useState("none");
+    const [showoverlay, setshowoverlay] = useState("none");
 
     const overlayVideo=(event) => {
-        event.preventDefault();
+        event.preventDefault(); // so it doesn't play when clicked
+        setsource(event.target.src);
+        setshowoverlay("block");
+        setshowvideo("block");
+    }
 
-        console.log("video clicked");
-        console.log("this video: ", event.target);
-        console.log("this video src: ", event.target.children[0].src);
+    const showOverlay=() =>{
+        return {
+            display: showoverlay
+        }
+    }
 
-        setsource(waves.default);
-
-        var overlay = document.getElementById("overlay-video");
-        overlay.style.display = "block";
-
-        // make a copy of clicked video
-        // var vid = document.createElement('video');
-        // vid.setAttribute("controls","controls");
-        // // vid.setAttribute("className","overlayElement");
-        // var newSrc = document.createElement('source');
-        // newSrc.src = event.target.children[0].src;
-        // vid.appendChild(newSrc);
-
-        // // handle overlay div open and close
-        // var overlayVid = document.getElementById("overlay-video");
-        // overlayVid.style.display = "block";
-
-        // vid.setAttribute("style", "position:absolute;top:50%;left:50%;max-width:80%;max-height:80%;transform:translate(-50%,-50%);-ms-transform: translate(-50%,-50%);z-index:3");
-        // overlayVid.appendChild(vid);
-        // console.log("overlayVid: ", overlayVid);
+    const showOverlayVideo=() =>{
+        return {
+            display: showvideo
+        }
     }
 
     const closeOverlay=() => {
         //hide div
-        var overlay = document.getElementById("overlay-video");
-        overlay.style.display = "none";
-
+        setshowvideo("none");
+        setshowoverlay("none");
         setsource("");
     }
 
     // deal with back to top button
     const scrolling=(event) => {
-        //console.log("scrolling");
         let windowHeight = window.innerHeight;
         let quarterPage = windowHeight/4;
         var scroll = document.documentElement.scrollTop;
@@ -71,14 +60,13 @@ function VideoData() {
     useEffect(() => {
         window.addEventListener('scroll', scrolling);
 
-        // must cleanup to prevent memory leak --> unmounted
+        // must cleanup to prevent memory leak --> similar to componentWillUnmount
         return function cleanup() {
             window.removeEventListener('scroll', scrolling);
         }
     })
 
     const buttonStyle=() => {
-        console.log("displaybutton: ", displaybutton)
         return {
             display: displaybutton,
             position: 'fixed',
@@ -89,7 +77,6 @@ function VideoData() {
     }
 
     const backToTop=() => {
-        console.log("button clicked");
         setdisplaybutton("none");
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
@@ -99,36 +86,17 @@ function VideoData() {
     return (
         <div>
             <div className="video-container" id="videos">
-                <video width="320" height="240" onClick={overlayVideo} controls>
-                <source src={malibu.default} type="video/mp4" />
-                </video>
-
-                <video width="320" height="240" onClick={overlayVideo} controls>
-                <source src={rome.default} type="video/mp4" />
-                </video>
-
-                <video width="320" height="240" onClick={overlayVideo} controls>
-                <source src={waves.default} type="video/mp4" />
-                </video>
-
-                <video width="320" height="240" onClick={overlayVideo} controls>
-                <source src={snow.default} type="video/mp4" />
-                </video>
-
-                <video width="320" height="240" onClick={overlayVideo} controls>
-                <source src={twinpeaks.default} type="video/mp4" />
-                </video>
-
-                <video width="320" height="240" onClick={overlayVideo} controls>
-                <source src={jonah.default} type="video/mp4" />
-                </video>
+                <video src={malibu} width="320" height="240" onClick={overlayVideo} controls></video>
+                <video src={rome} width="320" height="240" onClick={overlayVideo} controls></video>
+                <video src={waves} width="320" height="240" onClick={overlayVideo} controls></video>
+                <video src={snow} width="320" height="240" onClick={overlayVideo} controls></video>
+                <video src={twinpeaks} width="320" height="240" onClick={overlayVideo} controls></video>
+                <video src={jonah} width="320" height="240" onClick={overlayVideo} controls></video>
             </div>
 
-            <div className="overlay" id="overlay-video">
-                <div className="overlay-div" id="overlay-divid" onClick={closeOverlay}></div>
-                <video className="overlay-element" id="video" controls="controls">
-                    <source src={waves.default} type="video/mp4"/>
-                </video>
+            <div className="overlay" style={showOverlay()}>
+                <div className="overlay-div" onClick={closeOverlay}></div>
+                <video className="overlay-element" src={source} style={showOverlayVideo()} controls></video>
             </div>
 
             <button style={buttonStyle()} onClick={backToTop}>back to top</button>
