@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/kk-185pr3/static/css/main.18060668.chunk.css",
+    "main.js": "/kk-185pr3/static/js/main.97a2ce4e.chunk.js",
+    "main.js.map": "/kk-185pr3/static/js/main.97a2ce4e.chunk.js.map",
+    "runtime-main.js": "/kk-185pr3/static/js/runtime-main.4fbebe04.js",
+    "runtime-main.js.map": "/kk-185pr3/static/js/runtime-main.4fbebe04.js.map",
+    "static/js/2.80fdab53.chunk.js": "/kk-185pr3/static/js/2.80fdab53.chunk.js",
+    "static/js/2.80fdab53.chunk.js.map": "/kk-185pr3/static/js/2.80fdab53.chunk.js.map",
+    "static/js/3.0b0f6058.chunk.js": "/kk-185pr3/static/js/3.0b0f6058.chunk.js",
+    "static/js/3.0b0f6058.chunk.js.map": "/kk-185pr3/static/js/3.0b0f6058.chunk.js.map",
+    "index.html": "/kk-185pr3/index.html",
+    "static/css/main.18060668.chunk.css.map": "/kk-185pr3/static/css/main.18060668.chunk.css.map",
+    "static/js/2.80fdab53.chunk.js.LICENSE.txt": "/kk-185pr3/static/js/2.80fdab53.chunk.js.LICENSE.txt",
+    "static/media/jonah.4dd80c48.MP4": "/kk-185pr3/static/media/jonah.4dd80c48.MP4",
+    "static/media/malibu.8840969f.JPG": "/kk-185pr3/static/media/malibu.8840969f.JPG",
+    "static/media/malibu.d943ac72.MP4": "/kk-185pr3/static/media/malibu.d943ac72.MP4",
+    "static/media/malibu_ocean.19b44ea1.JPG": "/kk-185pr3/static/media/malibu_ocean.19b44ea1.JPG",
+    "static/media/ocean.8ecb8780.JPG": "/kk-185pr3/static/media/ocean.8ecb8780.JPG",
+    "static/media/old_room.77ced455.JPG": "/kk-185pr3/static/media/old_room.77ced455.JPG",
+    "static/media/posing.d95536c3.jpg": "/kk-185pr3/static/media/posing.d95536c3.jpg",
+    "static/media/rome.6ce72d92.MP4": "/kk-185pr3/static/media/rome.6ce72d92.MP4",
+    "static/media/rome.e9a0f03f.jpg": "/kk-185pr3/static/media/rome.e9a0f03f.jpg",
+    "static/media/snow.4b34f653.MP4": "/kk-185pr3/static/media/snow.4b34f653.MP4",
+    "static/media/spain.dc144e26.jpg": "/kk-185pr3/static/media/spain.dc144e26.jpg",
+    "static/media/sunset.45157b7d.jpg": "/kk-185pr3/static/media/sunset.45157b7d.jpg",
+    "static/media/sunset_aftermath.cc98389c.JPG": "/kk-185pr3/static/media/sunset_aftermath.cc98389c.JPG",
+    "static/media/twinpeaks.6cee7407.MP4": "/kk-185pr3/static/media/twinpeaks.6cee7407.MP4",
+    "static/media/waves.035835ed.MP4": "/kk-185pr3/static/media/waves.035835ed.MP4",
+    "static/media/wonderspaces.c97054f1.JPG": "/kk-185pr3/static/media/wonderspaces.c97054f1.JPG"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4fbebe04.js",
+    "static/js/2.80fdab53.chunk.js",
+    "static/css/main.18060668.chunk.css",
+    "static/js/main.97a2ce4e.chunk.js"
+  ]
+}
