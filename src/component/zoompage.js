@@ -8,6 +8,9 @@ import Tasks from './tasks'
 
 function ZoomData() {
     const [tasks, setTasks] = useState([])
+    const [showform, setShowForm] = useState(false)
+    const [showtasks, setShowTasks] = useState(true)
+    const [buttonName, setButtonName] = useState("Create Meeting")
 
     useEffect( () => {
         const getTasks = async () => {
@@ -48,6 +51,9 @@ function ZoomData() {
 
         const data = await res.json()
         setTasks([...tasks, data])
+        setShowForm(false)
+        setShowTasks(true)
+        setButtonName("Create Meeting")
     }
 
     const updateTask = async (id) => {
@@ -71,12 +77,35 @@ function ZoomData() {
         )
     }
 
+    // const newMeetingFormStyle=() =>{
+    //     return {
+    //         display: form
+    //     }
+    // }
+
+    const showNewMeetingForm=(event) =>{
+        if (event.target.innerHTML == "Create Meeting") {
+            setShowForm(true)
+            setShowTasks(false)
+            setButtonName("Full Schedule")
+        }
+        else if (event.target.innerHTML == "Full Schedule") {
+            setShowForm(false)
+            setShowTasks(true)
+            setButtonName("Create Meeting")
+        }
+    }
+
+    const newMeetingForm = <AddTask onAdd={addTask}/>
+    const meetings = <Tasks tasks={tasks} onDelete={deleteTask} onUpdate={updateTask}/>
+
     // return only one element
     return (
         <div className="zoom-container">
           <Header title="zoom meeting manager"/>
-          <AddTask onAdd={addTask}/>
-          <Tasks tasks={tasks} onDelete={deleteTask} onUpdate={updateTask}/>
+          <button className="add" onClick={showNewMeetingForm}>{buttonName}</button>
+          {showform && newMeetingForm}
+          {showtasks && meetings}
         </div>
     )
 }
