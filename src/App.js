@@ -6,22 +6,6 @@ import { useState, useEffect } from 'react';
 
 function App() {
   const [active, setactive] = useState(1)
-  const [tasks, setTasks] = useState([])
-
-  useEffect( () => {
-    const getTasks = async () => {
-      const tasksFromServer = await fetchTasks()
-      setTasks(tasksFromServer)
-    }
-
-    getTasks()
-  }, []) // empty dependency array
-
-  const fetchTasks = async () => {
-    const res = await fetch("https://localhost:5000/tasks")
-    const data = await res.json()
-    return data
-  }
 
   const tabs =[{
     id:1,
@@ -46,6 +30,10 @@ function App() {
   {
     id:6,
     title:'email'
+  },
+  {
+    id:7,
+    title:'zoom'
   }]
   const changetab =(id) =>{
     setactive(id)

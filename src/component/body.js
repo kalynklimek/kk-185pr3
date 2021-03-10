@@ -5,6 +5,7 @@ import ImageData from './imagepage';
 import VideoData from './videopage';
 import TableData from './tablepage';
 import EmailData from './emailpage';
+import ZoomData from './zoompage';
 
 class Body extends Component {
 
@@ -23,8 +24,10 @@ class Body extends Component {
                 return <VideoData/>
             } else if (activetab == 5) {
                 return <TableData/>
-            } else {
+            } else if (activetab == 6) {
                 return <EmailData/>
+            } else {
+                return <ZoomData/>
             }
         }
 
