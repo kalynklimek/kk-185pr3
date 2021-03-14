@@ -1,10 +1,7 @@
 import {useState} from 'react'
-//import UpdateTask from './updatetask'
-import AddTask from './addtask'
 import UpdateTask from './updatetask'
 
-// const Task = ({task, onDelete, onUpdate}) => {
-const Task = ({task, onDelete}) => {
+const Task = ({task, onDelete, onUpdate}) => {
     const[update, setUdpate] = useState(false)
     const[form, setForm] = useState(null)
 
@@ -20,45 +17,12 @@ const Task = ({task, onDelete}) => {
 
     const clickedMeeting = (id) => {
         console.log("id double clicked: ", id)
-        setForm(<UpdateTask id={id} onUpdate={updateTask}/>)
+        setForm(<UpdateTask id={id} onUpdate={onUpdate}/>)
 
         // add or remove update form
         if (update) { setUdpate(false) }
         else { setUdpate(true) }
         console.log("task double clicked.");
-    }
-
-    const fetchTask = async (id) => {
-        const res = await fetch(`http://localhost:5000/tasks/${id}`)
-        const data = await res.json()
-        return data
-    }
-
-    const updateTask = async (id, task) => {
-        console.log("task parameter: ", task)
-        const taskToToggle = await fetchTask(id)
-        const updTask = { ...taskToToggle, important: !taskToToggle.important }
-        console.log("updTask: ", updTask)
-
-        const res = await fetch(`http://localhost:5000/tasks/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(updTask)
-        })
-
-        const data = await res.json()
-
-        console.log("data in updateTask: ", data)
-
-        // setTasks(
-        //     tasks.map((task) =>
-        //         task.id === id ? { ...task, important: data.important } : task 
-        //     )
-        // )
-
-        // setUdpate(false) // close update form
     }
 
     return (
