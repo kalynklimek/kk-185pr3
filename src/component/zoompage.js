@@ -28,11 +28,11 @@ function ZoomData() {
         return data
     }
 
-    const fetchTask = async (id) => {
-        const res = await fetch(`http://localhost:5000/tasks/${id}`)
-        const data = await res.json()
-        return data
-    }
+    // const fetchTask = async (id) => {
+    //     const res = await fetch(`http://localhost:5000/tasks/${id}`)
+    //     const data = await res.json()
+    //     return data
+    // }
 
     const deleteTask = async (id) => {
         const res = await fetch(`http://localhost:5000/tasks/${id}`,
@@ -56,31 +56,25 @@ function ZoomData() {
         setButtonName("Create Meeting")
     }
 
-    const updateTask = async (id) => {
-        const taskToToggle = await fetchTask(id)
-        const updTask = { ...taskToToggle, important: !taskToToggle.important }
+    // const updateTask = async (id) => {
+    //     const taskToToggle = await fetchTask(id)
+    //     const updTask = { ...taskToToggle, important: !taskToToggle.important }
 
-        const res = await fetch(`http://localhost:5000/tasks/${id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(updTask)
-        })
+    //     const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+    //         method: 'PUT',
+    //         headers: {
+    //             'Content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify(updTask)
+    //     })
 
-        const data = await res.json()
+    //     const data = await res.json()
 
-        setTasks(
-            tasks.map((task) =>
-                task.id === id ? { ...task, important: data.important } : task 
-            )
-        )
-    }
-
-    // const newMeetingFormStyle=() =>{
-    //     return {
-    //         display: form
-    //     }
+    //     setTasks(
+    //         tasks.map((task) =>
+    //             task.id === id ? { ...task, important: data.important } : task 
+    //         )
+    //     )
     // }
 
     const showNewMeetingForm=(event) =>{
@@ -97,7 +91,9 @@ function ZoomData() {
     }
 
     const newMeetingForm = <AddTask onAdd={addTask}/>
-    const meetings = <Tasks tasks={tasks} onDelete={deleteTask} onUpdate={updateTask}/>
+    //const meetings = <Tasks tasks={tasks} onDelete={deleteTask} onUpdate={updateTask}/>
+    const meetings = <Tasks tasks={tasks} onDelete={deleteTask}/>
+    // const updateMeetingForm = <UpdateTask/>
 
     // return only one element
     return (
