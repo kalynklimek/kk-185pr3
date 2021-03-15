@@ -33,36 +33,37 @@ const AddTask = ({onAdd}) => {
         }
         else if (!textInfor.includes("zoom")) {
             setError(true)
-            setFields("url")
+            setFields("zoom link")
         }
         else {
             onAdd({title, day, textInfor, important})
             setTitle('')
             setDay('')
+            setUrl('')
             setImportant(false)
             setError(false)
         }
     }
 
     return (
-        <form className='add-form' onSubmit={onSubmit}>
-            <div className='form-control'>
-                <label>Meeting</label>
+        <form className='meeting-form' onSubmit={onSubmit}>
+            <div className='form-input'>
+                <label>Meeting:</label>
                 <input type='text' placeholder='title' value={title} onChange={(e) => setTitle(e.target.value)} />
             </div>
-            <div className='form-control'>
-                <label>Date</label>
-                <input type='date' placeholder='mm/dd/yyyy' value={day} onChange={(e) => setDay(e.target.value)}/>
+            <div className='form-input'>
+                <label>Date:</label>
+                <input type='datetime-local' placeholder='mm/dd/yyyy' value={day} onChange={(e) => setDay(e.target.value)}/>
             </div>
-            <div className='form-control'>
-                <label>URL</label>
+            <div className='form-input'>
+                <label>Zoom Link:</label>
                 <input type='url' value={textInfor} onChange={(e) => setUrl(e.target.value)}/>
             </div>
-            <div className='form-control form-control-check'>
+            <div className='form-important'>
                 <label>Important</label>
                 <input type='checkbox' checked={important} value={important} onChange={(e) => setImportant(e.currentTarget.checked)}/>
             </div>
-            <input type='submit' value='Save Meeting' className='btn btn-block'/>
+            <input type='submit' value='Save Meeting' className='submit-btn'/>
             {error && <p className="error-msg">Please fix the {fields} field(s)</p>}
         </form>
     )

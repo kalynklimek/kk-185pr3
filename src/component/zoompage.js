@@ -28,14 +28,8 @@ function ZoomData() {
         return data
     }
 
-    const fetchTask = async (id) => {
-        const res = await fetch(`http://localhost:5000/tasks/${id}`)
-        const data = await res.json()
-        return data
-    }
-
     const deleteTask = async (id) => {
-        const res = await fetch(`http://localhost:5000/tasks/${id}`,
+        await fetch(`http://localhost:5000/tasks/${id}`,
         {method: 'DELETE'})
         setTasks(tasks.filter((task) => task.id !== id))
     }
@@ -57,11 +51,7 @@ function ZoomData() {
     }
 
     const updateTask = async (id, task) => {
-        console.log("task parameter: ", task)
-        const taskToToggle = await fetchTask(id)
-        // const updTask = { ...taskToToggle, important: !taskToToggle.important }
-        const updTask = { title: task.title, day: task.day, textInfor: task.textInfor, important: task.important }
-        console.log("updTask: ", updTask)
+        const updTask = { id: id, title: task.title, day: task.day, textInfor: task.textInfor, important: task.important }
 
         const res = await fetch(`http://localhost:5000/tasks/${id}`, {
             method: 'PUT',
@@ -73,16 +63,11 @@ function ZoomData() {
 
         const data = await res.json()
 
-        console.log("data in updateTask: ", data)
-
         setTasks(
             tasks.map((task) =>
-                // task.id === id ? { ...task, important: data.important } : task 
-                task.id === id ? { title: data.title, day: data.day, textInfor: data.textInfor, important: data.important } : task 
+                task.id === id ? { id: data.id, title: data.title, day: data.day, textInfor: data.textInfor, important: data.important } : task 
             )
         )
-
-        // setUdpate(false) // close update form
     }
 
     const showNewMeetingForm=(event) =>{
@@ -104,10 +89,15 @@ function ZoomData() {
     // return only one element
     return (
         <div className="zoom-container">
-          <Header title="zoom meeting manager"/>
-          <button className="add" onClick={showNewMeetingForm}>{buttonName}</button>
-          {showform && newMeetingForm}
-          {showtasks && meetings}
+            <div className="header">
+                {/* <Header title="zoom meeting manager"/> */}
+                <h1 className="title">zoom meeting manager</h1>
+                <button className="toggle-btn" onClick={showNewMeetingForm}>{buttonName}</button>
+            </div>
+            {showform && newMeetingForm}
+            <div className="meeting-list">
+                {showtasks && meetings}
+            </div>
         </div>
     )
 }
