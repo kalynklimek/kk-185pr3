@@ -167,3 +167,120 @@ th, td.link {
     table-layout: fixed;
     border-collapse: collapse;
 }
+
+/* ------------------ ZOOM PAGE ------------------- */
+.zoom-container {
+    width: 550px;
+    display: block;
+    float: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid white;
+}
+
+.header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.title {
+    margin: 5px;
+}
+
+.toggle-btn {
+    border: 1px solid white;
+    border-radius: 3px;
+    font-size: 16px;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+
+/* ----------------- MEETING STYLING ----------------- */
+.meeting-list {
+    margin: 30px;
+}
+
+.meeting {
+    /* border: 2px solid rgb(189, 188, 188); */
+    background-color: rgb(31, 31, 31);;
+    /* margin: 10px; */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.meeting-header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.meeting a {
+    color: rgba(152, 251, 152)
+}
+
+h3, .meeting-date, .zoom-link {
+    margin: 5px;
+}
+
+.delete-btn {
+    border: 1px solid red;
+    border-radius: 3px;
+    padding: 5px;
+    /* cursor: pointer;
+    background-color: red; */
+}
+
+/* ----------------- FORM MEETING STYLING ----------------- */
+.meeting-form {
+    padding: 30px;
+    text-align: left;
+    font-size: 18px;
+}
+
+#update-form {
+    border: 1px solid white;
+}
+
+.meeting-form label {
+    margin-bottom: 5px;
+}
+
+.meeting-form input {
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 2px;
+}
+
+.form-input {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-bottom: 20px;
+}
+
+.form-important {
+    margin-bottom: 15px;
+}
+
+.form-important label {
+    margin-right: 10px;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: rgba(152, 251, 152, 0.8);
+    border: none;
+    border-radius: 2px;
+}
+
+.error-msg {
+    color: red;
+    padding: 0;
+}
