@@ -37,7 +37,7 @@ const Task = ({task, onDelete, onUpdate}) => {
     }
 
     const clickedMeeting = (id) => {
-        setForm(<UpdateTask id={id} onUpdate={onUpdate} displayForm={closeForm}/>)
+        setForm(<UpdateTask id={id} task={task} onUpdate={onUpdate} displayForm={closeForm}/>)
 
         // add or remove update form
         if (update) { setUdpate(false) }

@@ -2,12 +2,12 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import './style.css'
 
-import Header from './header';
 import AddTask from './addtask';
 import Tasks from './tasks'
 
 function ZoomData() {
     const [tasks, setTasks] = useState([])
+    const [emptytasks, setEmptyTasks] = useState(false)
     const [showform, setShowForm] = useState(false)
     const [showtasks, setShowTasks] = useState(true)
     const [buttonName, setButtonName] = useState("Create Meeting")
@@ -17,7 +17,7 @@ function ZoomData() {
             const tasksFromServer = await fetchTasks()
             setTasks(tasksFromServer)
         }
-
+        
         getTasks()
     }, []) // empty dependency array
 
@@ -25,6 +25,10 @@ function ZoomData() {
         const res = await fetch("http://localhost:5000/tasks")
         const data = await res.json()
         console.log("tasks loaded from server: ", data);
+        console.log("data.length: ", data.length)
+        if (data.length == 0) {
+            setEmptyTasks(true)
+        }
         return data
     }
 
@@ -32,6 +36,10 @@ function ZoomData() {
         await fetch(`http://localhost:5000/tasks/${id}`,
         {method: 'DELETE'})
         setTasks(tasks.filter((task) => task.id !== id))
+        console.log("tasks length in delete",tasks.length)
+        if (tasks.length == 1) {
+            setEmptyTasks(true)
+        }
     }
 
     const addTask = async (task) => {
@@ -47,6 +55,7 @@ function ZoomData() {
         setTasks([...tasks, data])
         setShowForm(false)
         setShowTasks(true)
+        setEmptyTasks(false)
         setButtonName("Create Meeting")
     }
 
@@ -75,11 +84,15 @@ function ZoomData() {
             setShowForm(true)
             setShowTasks(false)
             setButtonName("Full Schedule")
+            setEmptyTasks(false)
         }
         else if (event.target.innerHTML == "Full Schedule") {
             setShowForm(false)
             setShowTasks(true)
             setButtonName("Create Meeting")
+            if (tasks.length == 0) {
+                setEmptyTasks(true)
+            }
         }
     }
 
@@ -98,6 +111,7 @@ function ZoomData() {
             <div className="meeting-list">
                 {showtasks && meetings}
             </div>
+            {emptytasks && <p className="no-tasks">There are no available meetings.</p>}
         </div>
     )
 }

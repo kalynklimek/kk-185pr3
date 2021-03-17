@@ -2,7 +2,7 @@ import './App.css';
 
 import Body from './component/body';
 import Tablist from './component/tablist';
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 
 function App() {
   const [active, setactive] = useState(1)

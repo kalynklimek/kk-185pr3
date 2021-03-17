@@ -170,7 +170,7 @@ th, td.link {
 
 /* ------------------ ZOOM PAGE ------------------- */
 .zoom-container {
-    width: 50%;
+    width: 550px;
     display: block;
     float: center;
     margin-top: 20px;
@@ -278,4 +278,9 @@ h3, .meeting-date, .zoom-link {
     background-color: rgba(152, 251, 152, 0.8);
     border: none;
     border-radius: 2px;
+}
+
+.error-msg {
+    color: red;
+    padding: 0;
 }
